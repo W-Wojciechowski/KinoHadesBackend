@@ -8,6 +8,9 @@
 		<version>2.6.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+	<groupId>pl.lodz.p.edu</groupId>
+	<artifactId>ProjektOro</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
 	<name>ProjektOro</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
@@ -77,11 +80,6 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-mail</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>pl.lodz.p.edu</groupId>
-			<artifactId>ProjektOro</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 
