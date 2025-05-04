@@ -15,13 +15,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import javax.servlet.http.HttpServletResponse;
 import java.net.http.HttpResponse;
-import java.util.List;
 
 
 @EnableWebSecurity
@@ -54,24 +50,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http = http.exceptionHandling().authenticationEntryPoint((request,response, ex) -> {
             response.sendError(HttpServletResponse.SC_UNAUTHORIZED, ex.getMessage());
         }).and();
-        http.authorizeRequests().antMatchers("/api/**", "/ws/**").permitAll()
+        http.authorizeRequests().antMatchers("/api/**").permitAll()
                 .anyRequest().authenticated();
         http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
     }
-
-//    @Bean
-//    public CorsConfigurationSource corsConfigurationSource() {
-//        CorsConfiguration config = new CorsConfiguration();
-//        config.setAllowedOrigins(List.of("https://kino-hades.vercel.app"));
-//        config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-//        config.setAllowedHeaders(List.of("*"));
-//        config.setAllowCredentials(true);
-//
-//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-//        source.registerCorsConfiguration("/api/**", config);
-//        return source;
-//    }
 
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
